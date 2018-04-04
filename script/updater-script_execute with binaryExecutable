@@ -1,0 +1,10 @@
+assert(getprop("ro.product.device") == "titan" || getprop("ro.build.product") == "titan");
+ui_print("Display info about devices");
+ui_print("---------------------------");
+ui_print("check is it working");
+ui_print(getprop("ro.product.device"));
+ui_print(getprop("ro.build.version.codename"));
+ui_print(getprop("ro.product.model"));
+ui_print(getprop("ro.product.name"));
+ui_print(getprop("ro.product.brand"));
+ui_print("---------------------------");
