@@ -1,0 +1,19 @@
+
+Through openssl:--To create private/public key pair using openssl
+
+- openssl genrsa -out key.pem 1024                                                  ----->creat private key(key.pem)
+- openssl req -new -key key.pem -out request.pem                                    ------->
+- openssl x509 -req -days 9999 -in request.pem -signkey key.pem -out certificate.pem -------> creat certificate.pem file
+- openssl pkcs8 -topk8 -outform DER -in key.pem -inform PEM -out key.pk8 -nocrypt   --------> creat key.pk8 file
+
+
+To sign apk or zip files using SignApk.jar(OpenSource):
+	* Download signapk.zip file through opensource project google
+	  After download extract zip("aosp-signapk-master") and past zip file(which you are created),certificate.pem,key.pk8 in 
+	  extracted folder("aosp-signapk-master") after that run the command
+	command ----
+		java -jar prebuilt/aospsign.jar -w key-name.x509.pem key-name.pk8 unsigned.zip signed.zip
+
+		here--
+			key-name.x509.pem = certificate.pem
+			key-name.pk8 = key.pk8
