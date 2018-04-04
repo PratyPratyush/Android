@@ -1,0 +1,31 @@
+boot_linageOS.img   --> This is original boot image file get from original linageOS file of size 8.2MB
+bootimg_moto.img    --> This is dump image file from moto phone of size 10MB
+
+
+hexdump -C boot_linageOS.img |tail -n20  --|
+					   |  Using This we have checked last 20 Line of both file and both are different.
+hexdump -C bootimg_moto.img |tail -n20   --|  To become "bootimg_moto.img" as a original file we follow the step.
+
+
+Step -1
+
+--> First we will find "count" value of original file at a prticular "bs" [block size-512].
+--> To count,we use "dd" command and we will creat a random copy of orignal boot image file(boot_linageOS.img)
+     at a prticular "bs"[block size-512].
+--> "dd" command will display count value and more info at particular "bs" (block size-512) after generating copy of random file.
+
+command-->      dd if=./boot_linageOS.img of=./randomOS.img bs=512
+info-->         16680+0 records in
+	        16680+0 records out
+                8540160 bytes (8.5 MB) copied, 0.104025 s, 82.1 MB/s
+
+
+
+
+Step -2
+
+--> Now we use the "count value"(16680) and "bs" (block size=512) to creat boot image file 
+    as a orignal file from dump image file
+
+
+command-->      dd if=./bootimg_moto.img of=./newImage.img bs=512 count=16680
